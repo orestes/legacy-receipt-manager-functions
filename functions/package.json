@@ -1,0 +1,37 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "delete": "gsutil rm gs://orestes-lab-198500.appspot.com/*",
+    "upload": "gsutil cp ../receipts/* gs://orestes-lab-198500.appspot.com",
+    "reupload": "npm run delete; npm run upload",
+    "test": "rimraf lib && tsc && ava --files 'lib/**/*.test.js' --verbose"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@google-cloud/firestore": "0.14.1",
+    "@google-cloud/storage": "1.7.0",
+    "@google-cloud/vision": "0.20.0",
+    "actions-on-google": "2.2.0",
+    "busboy": "0.2.14",
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.0.3",
+    "gs": "https://github.com/sina-masnadi/node-gs/tarball/master",
+    "moment": "2.22.2",
+    "node-fetch": "2.1.2"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "2.1.1",
+    "ava": "1.0.0-beta.6",
+    "rimraf": "2.6.2",
+    "tslint": "^5.8.0",
+    "typescript": "^2.5.3"
+  },
+  "private": true
+}
